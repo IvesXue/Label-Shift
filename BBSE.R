@@ -211,6 +211,12 @@ prob_T = test3$prob_T
 # Calibration and Brier score
 # Raw probabilities on target
 prob_raw <- predict(f, newdata = target, type = "probs")
+lev <- levels(target$Y)     
+p2  <- prob_raw       
+p1  <- 1 - p2           
+prob_raw_mat <- cbind(p1, p2)
+colnames(prob_raw_mat) <- lev
+
 
 # Take P(Y=1|X) for raw and adjusted
 p_raw <- prob_raw_mat[, "1"]
